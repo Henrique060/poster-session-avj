@@ -151,24 +151,19 @@
     </div>
 
     <a-scene
+      id = "scene"
       mindar-image="imageTargetSrc: ./public/markers/target.mind; maxTrack: 2"
       color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights"
       vr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false"
     >
-      <a-camera 
-        position="0 0 0" 
-        look-controls="enabled: false" 
-        near="0.001" 
-        far="1000"
-        cursor="rayOrigin: mouse"
-        raycaster="objects: .clickable"
-      >
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
         <a-cursor fuse="false" rayOrigin="mouse"></a-cursor>
       </a-camera>
 
       <a-assets>
+        <a-asset-item id="emptyPoster" src="./public/models/empty-poster.glb"></a-asset-item>
         <a-asset-item id="poster1" src="./public/models/poster-1.glb"></a-asset-item>
         <a-asset-item id="poster2" src="./public/models/poster-2.glb"></a-asset-item>
         <a-asset-item id="poster3" src="./public/models/poster-3.glb"></a-asset-item>
@@ -176,44 +171,146 @@
       </a-assets>
 
       <a-entity mindar-image-target="targetIndex: 0" id="target">
-
-       <a-gltf-model src="#poster1" position="0 0 0.1" rotation="90 0 0"></a-gltf-model>
-       <a-gltf-model src="#poster2" position="0 0 0.1" rotation="90 0 0"></a-gltf-model>
-       <a-gltf-model src="#poster3" position="0 0 0.1" rotation="90 0 0"></a-gltf-model>
-       <a-gltf-model src="#poster4" position="0 0 0.1" rotation="90 0 0"></a-gltf-model>
+       <a-gltf-model id="emptyPosterEntity" src="#emptyPoster" position="0 0 0.1" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
+       <a-gltf-model id="poster1Entity" src="#poster1" position="0.2 0 0.11" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
+       <a-gltf-model id="poster2Entity" src="#poster2" position="0 0.2 0.11" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
+       <a-gltf-model id="poster3Entity" src="#poster3" position="0 -0.15 0.11" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
+       <a-gltf-model id="poster4Entity" src="#poster4" position="-0.15 0.2 0.11" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
 
       </a-entity>
 
-   
-    </a-scene>
+   </a-scene>
 
     <script>
-      const helpButton = document.getElementById("helpButton");
-      const helpOverlay = document.getElementById("helpOverlay");
-      const audioHint = document.getElementById("audioHint");
-      const startButton = document.getElementById("startButton");
+        const scene = document.querySelector('#scene');
+        scene.addEventListener('loaded', () => {
+            const canvas = scene.canvas;
+            const overlay = document.getElementById("overlay");
 
-      startButton.addEventListener("click", () => {
-        const overlay = document.getElementById("overlay");
-        overlay.style.display = "none";
-      });
+            const helpButton = document.getElementById("helpButton");
+            const helpOverlay = document.getElementById("helpOverlay");
+            const audioHint = document.getElementById("audioHint");
+            const startButton = document.getElementById("startButton");
+            
+            const camera = document.querySelector('a-camera');
+            
+            const emptyPosterEl = document.getElementById("emptyPosterEntity");
+            const poster1El = document.getElementById("poster1Entity");
+            const poster2El = document.getElementById("poster2Entity");
+            const poster3El = document.getElementById("poster3Entity");
+            const poster4El = document.getElementById("poster4Entity");
 
-      helpButton.addEventListener("click", () => {
-        helpOverlay.style.display = "flex";
-      });
+            startButton.addEventListener("click", () => {
+                overlay.style.display = "none";
+            });
 
-      helpOverlay.addEventListener("click", () => {
-        helpOverlay.style.display = "none";
-      });
+            helpButton.addEventListener("click", () => {
+                helpOverlay.style.display = "flex";
+            });
 
-      function showAudioHint() {
-        audioHint.style.opacity = 1;
-        audioHint.style.pointerEvents = "auto";
-      }
+            helpOverlay.addEventListener("click", () => {
+                helpOverlay.style.display = "none";
+            });
 
-      function hideAudioHint() {
-        audioHint.style.opacity = 0;
-      }
+            function showAudioHint() {
+                audioHint.style.opacity = 1;
+                audioHint.style.pointerEvents = "auto";
+            }
+
+            function hideAudioHint() {
+                audioHint.style.opacity = 0;
+            }
+
+
+
+            // Raycasting and the rest 
+            const raycaster = new THREE.Raycaster();
+
+            function onTap(clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+
+            // Normalised device coordinates
+            const ndc = new THREE.Vector2(
+                ((clientX - rect.left)  / rect.width)  * 2 - 1,
+            -((clientY - rect.top)   / rect.height) * 2 + 1
+            );
+
+            const threeCamera = camera.getObject3D('camera');
+            raycaster.setFromCamera(ndc, threeCamera);
+
+            // Collect all meshes inside gem entity
+            const poster1 = [];
+            const poster2 = [];
+            const poster3 = [];
+            const poster4 = [];
+            poster1El.object3D.traverse(obj => { if (obj.isMesh) poster1.push(obj); });
+            poster2El.object3D.traverse(obj => { if (obj.isMesh) poster2.push(obj); });
+            poster3El.object3D.traverse(obj => { if (obj.isMesh) poster3.push(obj); });
+            poster4El.object3D.traverse(obj => { if (obj.isMesh) poster4.push(obj); });
+
+            if (poster1.length === 0) return; // model not loaded yet
+            if (poster2.length === 0) return; // model not loaded yet
+            if (poster3.length === 0) return; // model not loaded yet
+            if (poster4.length === 0) return; // model not loaded yet
+
+            const hits_posters1 = raycaster.intersectObjects(poster1, false);
+            const hits_posters2 = raycaster.intersectObjects(poster2, false);
+            const hits_posters3 = raycaster.intersectObjects(poster3, false);
+            const hits_posters4 = raycaster.intersectObjects(poster4, false);
+
+            if (hits_posters1.length > 0) {
+                poster1El.setAttribute('animation', {
+                property: 'position',
+                to: '0 0 0',
+                dur: 1000,
+                easing: 'easeInOutQuad'
+                });
+            }
+
+            if (hits_posters2.length > 0) {
+                poster2El.setAttribute('animation', {
+                property: 'position',
+                to: '0 0 0',
+                dur: 1000,
+                easing: 'easeInOutQuad'
+                });
+            }
+
+            if (hits_posters3.length > 0) {
+                poster3El.setAttribute('animation', {
+                property: 'position',
+                to: '0 0 0',
+                dur: 1000,
+                easing: 'easeInOutQuad'
+                });
+            }
+
+            if (hits_posters4.length > 0) {
+                poster4El.setAttribute('animation', {
+                property: 'position',
+                to: '0 0 0',
+                dur: 1000,
+                easing: 'easeInOutQuad'
+                });
+            }
+
+            }
+
+            // Touch (iOS/Android)
+            canvas.addEventListener('touchstart', e => {
+            e.preventDefault();
+            const t = e.touches[0];
+            onTap(t.clientX, t.clientY);
+            }, { passive: false });
+
+            // Mouse (desktop testing)
+            canvas.addEventListener('click', e => {
+            onTap(e.clientX, e.clientY);
+            });
+
+        
+        })
+      
     </script>
   </body>
 </html>
