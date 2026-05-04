@@ -135,7 +135,7 @@
     </div>
 
     <div id="audioHint">
-        Tap the pieces to reconstruct the poster!
+        Well done! The poster is complete!
     </div>
 
     <div id="overlay">
@@ -175,7 +175,7 @@
        <a-gltf-model id="poster1Entity" src="#poster1" position="0.35 0.25 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
        <a-gltf-model id="poster2Entity" src="#poster2" position="-0.35 0.0 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
        <a-gltf-model id="poster3Entity" src="#poster3" position="0 -0.3 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
-       <a-gltf-model id="poster4Entity" src="#poster4" position="0.3 -0.1 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
+       <a-gltf-model id="poster4Entity" src="#poster4" position="0.3 -0.3 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
 
       </a-entity>
 
@@ -184,6 +184,7 @@
     <script>
         const scene = document.querySelector('#scene');
         scene.addEventListener('loaded', () => {
+            const finished = false;
             const canvas = scene.canvas;
             const overlay = document.getElementById("overlay");
 
@@ -292,10 +293,15 @@
                 dur: 1000,
                 easing: 'easeInOutQuad'
                 });
+
+                finished = true;
             }
 
             }
-
+            
+            if(finished){
+                showAudioHint();
+            }
             // Touch (iOS/Android)
             canvas.addEventListener('touchstart', e => {
             e.preventDefault();
