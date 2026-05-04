@@ -13,7 +13,7 @@
   <body>
     <style>
       body{
-        background-color: #FF5657;
+        background-color: #EA562E;
       }
       #overlay {
         position: fixed;
@@ -42,7 +42,7 @@
         font-size: 18px;
         border: none;
         border-radius: 30px;
-        background-color: #cc4545;
+        background-color: #EA562E;
         color: white;
         cursor: pointer;
         white-space: nowrap;
@@ -58,7 +58,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        background-color:#cc4545 ;
+        background-color:#EA562E ;
         color: white;
         border-radius: 30px;
         padding: 20px; 
@@ -75,7 +75,7 @@
         right: 20px;
         width: 40px;
         height: 40px;
-        background-color: #cc4545;
+        background-color: #EA562E;
         color: white;
         border-radius: 50%;
         display: flex;
@@ -106,7 +106,7 @@
         bottom: 25px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #cc4545;
+        background-color: #EA562E;
         color: white;
         font-family: "Fira Sans";
         font-size: 14px;
@@ -294,14 +294,12 @@
                 easing: 'easeInOutQuad'
                 });
 
-                finished = true;
+                
             }
 
             }
-            
-            if(finished){
-                showAudioHint();
-            }
+           
+
             // Touch (iOS/Android)
             canvas.addEventListener('touchstart', e => {
             e.preventDefault();
