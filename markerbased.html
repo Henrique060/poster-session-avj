@@ -175,7 +175,7 @@
        <a-gltf-model id="poster1Entity" src="#poster1" position="0.35 0.25 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
        <a-gltf-model id="poster2Entity" src="#poster2" position="-0.35 0.0 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
        <a-gltf-model id="poster3Entity" src="#poster3" position="0 -0.3 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
-       <a-gltf-model id="poster4Entity" src="#poster4" position="0.3 -0.3 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
+       <a-gltf-model id="poster4Entity" src="#poster4" position="0.3 -0.4 0.2" rotation="90 0 0" scale=".5 .5 .5"></a-gltf-model>
 
       </a-entity>
 
@@ -200,6 +200,11 @@
             const poster2El = document.getElementById("poster2Entity");
             const poster3El = document.getElementById("poster3Entity");
             const poster4El = document.getElementById("poster4Entity");
+
+            const poster1Tapped = false;
+            const poster2Tapped = false;
+            const poster3Tapped = false;
+            const poster4Tapped = false;
 
             startButton.addEventListener("click", () => {
                 overlay.style.display = "none";
@@ -266,6 +271,7 @@
                 dur: 1000,
                 easing: 'easeInOutQuad'
                 });
+                poster1Tapped = true;
             }
 
             if (hits_posters2.length > 0) {
@@ -275,6 +281,7 @@
                 dur: 1000,
                 easing: 'easeInOutQuad'
                 });
+                poster2Tapped = true;
             }
 
             if (hits_posters3.length > 0) {
@@ -284,6 +291,7 @@
                 dur: 1000,
                 easing: 'easeInOutQuad'
                 });
+                poster3Tapped = true;
             }
 
             if (hits_posters4.length > 0) {
@@ -293,10 +301,13 @@
                 dur: 1000,
                 easing: 'easeInOutQuad'
                 });
-
-                
+                poster4Tapped = true;
             }
-
+            
+            if (poster1Tapped && poster2Tapped && poster3Tapped && poster4Tapped && !finished) {
+                showAudioHint();
+                finished = true;
+                }
             }
            
 
