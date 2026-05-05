@@ -136,6 +136,7 @@
 
     <div id="audioHint">
         Well done! The poster is complete!
+        <a href="index.html"> Leave Experience</a>
     </div>
 
     <div id="overlay">
@@ -147,7 +148,7 @@
           </p>
         </h2>
       </div>
-      <button id="startButton"><b>Iniciar Realidade Aumentada</b></button>
+      <button id="startButton"><b>Begin Experience</b></button>
     </div>
 
     <a-scene
@@ -184,7 +185,7 @@
     <script>
         const scene = document.querySelector('#scene');
         scene.addEventListener('loaded', () => {
-            const finished = false;
+            let finished = false;
             const canvas = scene.canvas;
             const overlay = document.getElementById("overlay");
 
@@ -201,10 +202,10 @@
             const poster3El = document.getElementById("poster3Entity");
             const poster4El = document.getElementById("poster4Entity");
 
-            const poster1Tapped = false;
-            const poster2Tapped = false;
-            const poster3Tapped = false;
-            const poster4Tapped = false;
+            let poster1Tapped = false;
+            let poster2Tapped = false;
+            let poster3Tapped = false;
+            let poster4Tapped = false;
 
             startButton.addEventListener("click", () => {
                 overlay.style.display = "none";
