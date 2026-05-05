@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>A Verdade e a J-u-s-t-i-ça</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="markerless.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FF5657">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#8B2E2E">
+    <link rel="manifest" href="manifest.json">
+
+</head>
+<body>
+<div class="main-wrapper">
+    <div class="main-btn-container">
+        <a class="logo-link" href="index.html">
+            <img class="logo" src="./public/images/avj-logo.png" alt="Overlay Image">
+        </a>
+    </div>
+
+    <div class="title-container">
+        <h1 class="title">'Monumento à <br> J-u-s-t-i-ça'</h1>
+    </div>
+
+    <model-viewer 
+        src="./public/models/monumentoJustica.glb" 
+        alt="A 3D model of Monumento à J-u-s-t-i-ça" 
+        shadow-intensity="1" 
+        camera-controls 
+        touch-action="pan-y"
+        ar
+        ar-modes="scene-viewer quick-look"
+        >
+        <button slot="ar-button" class="btn ar-btn">
+            View in AR
+        </button>
+    </model-viewer>
+
+    <div class="description-container">
+        <p class="description">
+            Being a monument to justice itself, this prototype-versionof the model is intended to demonstrate a bare-bones version of justice. <br>
+            Stripped of color and ornament, this monument declares itself as the foundation to one's vision of justice. <br>
+            In the final version, it is envisioned to morph itself into the user's personal interpretation of justice. <br>
+            For now, simply place <i>Monumento à J-u-s-t-i-ça</i> on the ground!
+        </p>
+    </div>
+
+    <div class="btn-experience-container">
+        <a class="btn-new-experience" href="index.html">Back to Home</a>
+    </div>
+
+
+</body>
+</html>

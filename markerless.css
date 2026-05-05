@@ -1,0 +1,96 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "Fira Sans", sans-serif;
+    background-color: #EA562E;
+    }
+
+.main-btn-container{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.logo{
+    max-width: 400px;
+    display: block;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.title-container {
+    padding-top: 20px;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.description-container {
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.btn-experience-container {
+    margin-top: 20px;
+}
+
+.btn {
+    
+    background-color: #EA562E;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    
+}
+
+.btn:hover {
+    background-color: #EA562E;
+    color: #FFFFFF;
+}
+
+
+.btn-new-experience {
+    background-color: #FFFFFF;
+    color: #EA562E;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-new-experience:hover {
+    background-color: #EA562E;
+    color: #FFFFFF;
+}

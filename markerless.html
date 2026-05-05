@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
     <title>A Verdade e a J-u-s-t-i-ça</title>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="markerless.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
@@ -16,42 +16,43 @@
 
 </head>
 <body>
-
-    <div class="main-wrapper">
-        <div class="main-btn-container">
-            <a class="btn" href="js-ar.html">Iniciar Experiência</a>
-        </div>
+<div class="main-wrapper">
+    <div class="main-btn-container">
+        <a class="logo-link" href="index.html">
+            <img class="logo" src="./public/images/avj-logo.png" alt="Overlay Image">
+        </a>
     </div>
 
-    <footer class="footer">
-        WebAR Experiences for Museums (Poster Session) 2026, <i>by Henrique Matos</i>
-    </footer>
+    <div class="title-container">
+        <h1 class="title">Portal to Terreiro do Paço</h1>
+    </div>
 
+    <model-viewer 
+        src="./public/models/portalTerreiro-postersession.glb" 
+        alt="A 3D model of Terreiro do Paço" 
+        shadow-intensity="1" 
+        camera-controls 
+        touch-action="pan-y"
+        ar
+        ar-modes="scene-viewer quick-look"
+        >
+        <button slot="ar-button" class="btn ar-btn">
+            View in AR
+        </button>
+    </model-viewer>
 
-    <section class="hero-desktop">
-
-    <div class="hero-left"></div>
-    
-    <div class="hero-right">
-        <h1 class="hero-right-header">
-            Aceda às experiências no seu telemóvel
-        </h1>
-
-        <img
-            src="./public/imgs/qrcode.png"
-            alt="QR Code"
-            class="qr-code"
-        />
-
-        <p class="hero-right-description">
-            Se estiver a utilizar um tablet, coloque na orientação vertical
+    <div class="description-container">
+        <p class="description">
+            We've accessed some hidden magic to bring Terreiro do Paço into this poster session! <br>
+            Enter into an early build of the 'Portal to Terreiro do Paço', in order to explore its wonders, in this Markerless WebAR Experience.<br>
         </p>
-        <footer class="hero-footer">
-            WebAR Experiences for Museums (Poster Session) 2026, <i>by Henrique Matos</i>
-        </footer>
     </div>
 
-</section>
+    <div class="btn-experience-container">
+        <a class="btn" href="index.html">Back to Home</a>
+        <a class="btn-new-experience" href="markerless-2.html">Next Experience</a>
+    </div>
+
 
 </body>
 </html>
