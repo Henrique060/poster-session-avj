@@ -18,9 +18,11 @@
 
     <div class="main-wrapper">
         <div class="main-btn-container">
-            <a class="btn" href="markerbased.html">Marker-based Experience</a>
-            <h4> <i>  OR  </i> </h4>
-            <a class="btn-markerless" href="markerless.html">Markerless Experience</a>
+            <button class="btn" id="selectBtn">Select your Experience</button>
+            <div class="popup-menu" id="popupMenu">
+                <a class="btn-markerless" href="markerbased.html">Marker-based Experience</a>
+                <a class="btn-markerless" href="markerless.html">Markerless Experience</a>
+            </div>
         </div>
     </div>
     <section class="hero-desktop">
@@ -44,6 +46,18 @@
     </div>
 
 </section>
+<script>
+  const selectBtn = document.getElementById('selectBtn');
+  const popupMenu = document.getElementById('popupMenu');
 
+  selectBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    popupMenu.classList.toggle('open');
+  });
+
+  document.addEventListener('click', () => {
+    popupMenu.classList.remove('open');
+  });
+</script>
 </body>
 </html>

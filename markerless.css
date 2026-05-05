@@ -8,7 +8,7 @@ html, body {
     }
 
 .main-btn-container{
-    position: fixed;
+    position: sticky;
     top: 20px;
     left: 20px;
 }
@@ -63,7 +63,7 @@ html, body {
 
 .btn {
     
-    background-color: #EA562E;
+    background-color: #a63d20;
     color: #FFFFFF;
     padding: 12px 24px;
     border: none;
@@ -93,4 +93,10 @@ html, body {
 .btn-new-experience:hover {
     background-color: #EA562E;
     color: #FFFFFF;
+}
+
+
+model-viewer{
+    width: 100%;
+    height: 100%;
 }
