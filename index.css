@@ -63,7 +63,6 @@ body, html {
 .btn {
     font-family: "Fira Sans";
     padding: 15px 30px;
-    padding-bottom: 10px;
     font-size: 14px;
     border: none;
     border-radius: 30px; /* fully rounded */
